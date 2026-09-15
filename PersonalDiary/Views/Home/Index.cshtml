@@ -1,8 +1,11 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Home";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="p-5 mb-4 bg-light rounded-3">
+    <div class="container-fluid py-3">
+        <h1 class="display-5 fw-bold">A private place for your thoughts.</h1>
+        <p class="col-md-8 fs-5">Keep one personal note for each day. Your diary is private to your account, and every entry can be updated up to five times.</p>
+        <a class="btn btn-primary btn-lg" asp-controller="Diary" asp-action="Index">Open my diary</a>
+    </div>
 </div>

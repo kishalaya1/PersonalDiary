@@ -1,0 +1,27 @@
+@model DiaryEntryInputModel
+@{
+    ViewData["Title"] = "New Entry";
+}
+
+<h1>New diary entry</h1>
+<p class="text-muted">Write one private entry for this date.</p>
+
+<form asp-action="Create" method="post" class="mt-4">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div class="mb-3">
+        <label asp-for="EntryDate" class="form-label"></label>
+        <input asp-for="EntryDate" class="form-control" />
+        <span asp-validation-for="EntryDate" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="Notes" class="form-label"></label>
+        <partial name="_RichTextEditor" model="Model.Notes" />
+        <span asp-validation-for="Notes" class="text-danger"></span>
+    </div>
+    <button type="submit" class="btn btn-primary">Save entry</button>
+    <a asp-action="Index" class="btn btn-link">Cancel</a>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
