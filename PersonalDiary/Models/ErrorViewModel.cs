@@ -1,4 +1,4 @@
-namespace PersonlaDiary.Models
+namespace PersonalDiary.Models
 {
     public class ErrorViewModel
     {

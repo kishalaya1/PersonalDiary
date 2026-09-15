@@ -1,0 +1,41 @@
+@model DiaryIndexViewModel
+@{
+    ViewData["Title"] = "My Diary";
+}
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <div>
+        <h1>My diary</h1>
+        <p class="text-muted mb-0">Your private daily notes.</p>
+    </div>
+    <a class="btn btn-primary" asp-action="Create">New entry</a>
+</div>
+
+@if (TempData["StatusMessage"] is string statusMessage)
+{
+    <div class="alert alert-success">@statusMessage</div>
+}
+
+@if (Model.Entries.Count == 0)
+{
+    <div class="card card-body text-center py-5">
+        <h2 class="h4">No entries yet</h2>
+        <p class="text-muted">Start by writing about today.</p>
+        <a class="btn btn-primary mx-auto" asp-action="Create">Write your first entry</a>
+    </div>
+}
+else
+{
+    <div class="list-group">
+        @foreach (var entry in Model.Entries)
+        {
+            <a class="list-group-item list-group-item-action py-3" asp-action="Details" asp-route-date="@entry.EntryDate.ToString("yyyy-MM-dd")">
+                <div class="d-flex w-100 justify-content-between">
+                    <h2 class="h5 mb-1">@entry.EntryDate.ToString("D")</h2>
+                    <small class="text-muted">@entry.EditCount / @Model.MaximumEdits edits</small>
+                </div>
+                <p class="mb-1 text-truncate">@PersonalDiary.Services.RichTextSanitizer.ToPlainText(entry.Notes)</p>
+            </a>
+        }
+    </div>
+}

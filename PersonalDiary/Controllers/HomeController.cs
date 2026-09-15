@@ -1,9 +1,11 @@
 using Microsoft.AspNetCore.Mvc;
-using PersonlaDiary.Models;
+using Microsoft.AspNetCore.Authorization;
+using PersonalDiary.Models;
 using System.Diagnostics;
 
-namespace PersonlaDiary.Controllers
+namespace PersonalDiary.Controllers
 {
+    [Authorize]
     public class HomeController : Controller
     {
         public IActionResult Index()
