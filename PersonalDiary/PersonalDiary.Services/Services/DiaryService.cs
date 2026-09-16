@@ -1,6 +1,6 @@
 using Microsoft.EntityFrameworkCore;
-using PersonalDiary.Data;
-using PersonalDiary.Models;
+using PersonalDiary.Services.Data;
+using PersonalDiary.Services.Models;
 
 namespace PersonalDiary.Services;
 
@@ -65,7 +65,7 @@ public sealed class DiaryService(ApplicationDbContext dbContext) : IDiaryService
         {
             UserId = userId,
             EntryDate = date,
-            Notes = RichTextSanitizer.Sanitize(notes).Trim(),
+            Notes = notes.Trim(),
             CreatedUtc = now,
             UpdatedUtc = now
         });
@@ -95,7 +95,7 @@ public sealed class DiaryService(ApplicationDbContext dbContext) : IDiaryService
             return DiaryUpdateResult.EditLimitReached;
         }
 
-        entry.Notes = RichTextSanitizer.Sanitize(notes).Trim();
+        entry.Notes = notes.Trim();
         entry.EditCount++;
         entry.UpdatedUtc = DateTime.UtcNow;
         await dbContext.SaveChangesAsync(cancellationToken);

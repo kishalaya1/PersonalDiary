@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace PersonalDiary.Models;
+namespace PersonalDiary.Services.Models;
 
 public class DiaryEntry
 {
@@ -13,7 +13,7 @@ public class DiaryEntry
     public DateOnly EntryDate { get; set; }
 
     [Required]
-    [StringLength(20_000, MinimumLength = 1)]
+    [StringLength(12_000_000, MinimumLength = 1)]
     public string Notes { get; set; } = string.Empty;
 
     public int EditCount { get; set; }

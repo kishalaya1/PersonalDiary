@@ -1,3 +1,5 @@
+using PersonalDiary.Services.Models;
+
 namespace PersonalDiary.Models;
 
 public class DiaryIndexViewModel

@@ -4,4 +4,5 @@
     <File Path="../README.md" />
   </Folder>
   <Project Path="PersonalDiary.csproj" />
+  <Project Path="PersonalDiary.Services/PersonalDiary.Services.csproj" />
 </Solution>

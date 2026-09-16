@@ -8,7 +8,7 @@ public static partial class RichTextSanitizer
 {
     private static readonly HashSet<string> AllowedTags = new(StringComparer.OrdinalIgnoreCase)
     {
-        "a", "b", "blockquote", "br", "div", "em", "font", "h1", "h2", "h3", "h4", "h5", "h6",
+        "a", "b", "blockquote", "br", "div", "em", "font", "h1", "h2", "h3", "h4", "h5", "h6", "img",
         "i", "li", "ol", "p", "s", "span", "strong", "u", "ul"
     };
 
@@ -54,6 +54,8 @@ public static partial class RichTextSanitizer
             var safeValue = attributeName switch
             {
                 "href" when name == "a" && IsSafeUrl(attributeValue) => attributeValue,
+                "src" when name == "img" && IsSafeImageDataUrl(attributeValue) => attributeValue,
+                "alt" when name == "img" => attributeValue,
                 "style" => SanitizeStyle(attributeValue),
                 "face" when name == "font" => attributeValue,
                 "size" when name == "font" && Regex.IsMatch(attributeValue, "^[1-7]$") => attributeValue,
@@ -91,6 +93,12 @@ public static partial class RichTextSanitizer
                 || uri.Scheme.Equals(Uri.UriSchemeMailto, StringComparison.OrdinalIgnoreCase));
     }
 
+    private static bool IsSafeImageDataUrl(string value)
+    {
+        return value.Length <= 3_000_000
+            && ImageDataUrlRegex().IsMatch(value);
+    }
+
     [GeneratedRegex("<(script|style|iframe|object|embed)\\b[^>]*>.*?</\\1\\s*>", RegexOptions.IgnoreCase | RegexOptions.Singleline)]
     private static partial Regex UnsafeBlockRegex();
 
@@ -105,4 +113,7 @@ public static partial class RichTextSanitizer
 
     [GeneratedRegex("(?<name>font-family|font-size|color|background-color|text-align)\\s*:\\s*(?<value>[#a-z0-9(),.%\\s-]+)", RegexOptions.IgnoreCase)]
     private static partial Regex StylePropertyRegex();
+
+    [GeneratedRegex("^data:image/(png|jpeg|gif|webp);base64,[a-z0-9+/]+={0,2}$", RegexOptions.IgnoreCase)]
+    private static partial Regex ImageDataUrlRegex();
 }

@@ -129,6 +129,13 @@ body {
   margin-bottom: 0;
 }
 
+.editor-surface img,
+.diary-note img {
+  max-width: 100%;
+  height: auto;
+  margin: .5rem .25rem;
+}
+
 @media (max-width: 575.98px) {
   .editor-tool-group {
     border-right: 0;
