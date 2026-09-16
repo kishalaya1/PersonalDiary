@@ -48,9 +48,11 @@
         </div>
         <div class="editor-tool-group">
             <button type="button" class="editor-tool" data-command="createLink" title="Insert link" aria-label="Insert link">🔗</button>
+            <button type="button" class="editor-tool" data-command="insertImage" title="Insert picture" aria-label="Insert picture">🖼️</button>
             <button type="button" class="editor-tool" data-command="removeFormat" title="Clear formatting" aria-label="Clear formatting">Tx</button>
         </div>
     </div>
     <div class="editor-surface" contenteditable="true" role="textbox" aria-multiline="true" data-editor-surface></div>
     <input type="hidden" name="Notes" value="@Model" data-editor-value />
+    <input type="file" accept="image/png,image/jpeg,image/gif,image/webp" multiple data-image-picker hidden />
 </div>

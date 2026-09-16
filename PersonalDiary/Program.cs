@@ -1,15 +1,20 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.AspNetCore.Http.Features;
 using System.Text;
 using Microsoft.EntityFrameworkCore;
-using PersonalDiary.Data;
 using PersonalDiary.Services;
+using PersonalDiary.Services.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages();
+builder.Services.Configure<FormOptions>(options =>
+{
+    options.ValueLengthLimit = 12_000_000;
+});
 
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")));

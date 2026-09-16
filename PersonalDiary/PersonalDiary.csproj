@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>net10.0</TargetFramework>
@@ -7,11 +7,20 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="10.0.0" />
-    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="10.0.0" />
+    <None Include="PersonalDiary.Services\PersonalDiary.Services.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="PersonalDiary.Services\**" />
+    <EmbeddedResource Remove="PersonalDiary.Services\**" />
+    <Content Remove="PersonalDiary.Services\**" />
+    <None Remove="PersonalDiary.Services\**" />
+    <ProjectReference Include="PersonalDiary.Services\PersonalDiary.Services.csproj" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="10.0.0" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="10.0.0" />
-    <PackageReference Include="SQLitePCLRaw.lib.e_sqlite3" Version="2.1.12-pre20260709125052" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Services\" />
   </ItemGroup>
 
 </Project>

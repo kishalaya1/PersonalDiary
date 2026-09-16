@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+	<TargetFramework>net10.0</TargetFramework>
+	<Nullable>enable</Nullable>
+	<ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+	<FrameworkReference Include="Microsoft.AspNetCore.App" />
+	<PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="10.0.0" />
+	<PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="10.0.0" />
+	<PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="10.0.0" />
+		<PackageReference Include="SQLitePCLRaw.lib.e_sqlite3" Version="2.1.12-pre20260709125052" />
+  </ItemGroup>
+
+</Project>

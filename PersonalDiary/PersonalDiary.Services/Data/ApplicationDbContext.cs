@@ -1,8 +1,8 @@
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using PersonalDiary.Models;
+using PersonalDiary.Services.Models;
 
-namespace PersonalDiary.Data;
+namespace PersonalDiary.Services.Data;
 
 public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
     : IdentityDbContext(options)
